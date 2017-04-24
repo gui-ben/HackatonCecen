@@ -1,0 +1,58 @@
+<header>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</header>
+<body><form method='post' action="/tracker/task/{{task.what}}/">{% csrf_token %}
+	<div > <h1 id='name' class='row'> {{task.readableWhat}} 
+	<button id='editName' class='btn btn-primary glyphicon glyphicon-pencil' onclick='replaceWithForm("name");' style='text-align:left' >  </button>
+	<button id='deleteBtn' class='btn btn-danger glyphicon glyphicon-trash' name='delete' value='y' style='text-align:left' >  </button>
+	
+	</h1></div>
+	<div > <h2 id='who' class='row'>Summary: {{task.readableWho}} <button id='editToWhom' class='btn btn-primary glyphicon glyphicon-pencil' onclick='replaceWithForm("who");' style='text-align:left' >  </button> <h2> </div>
+	<h2 class='row'> Status: {%if task.isPending %}
+				Pending
+			 {% elif task.accepted %}
+				Successfully completed!
+			 {% else %}
+				Failed
+			 {% endif %}
+				
+				
+				</h2> 
+	
+		
+		<button id='yes' value='y' name='update' class='btn btn-success custom-btn glyphicon glyphicon-ok'></button>
+		<button id='no' value='n' name='update' class='btn btn-danger custom-btn glyphicon glyphicon-remove'></button><br/>
+		<button id='goBackBtn' name='back' value='y' class='btn btn-primary glyphicon glyphicon-home'> Back to Homepage </button>
+	</form>
+		 
+		</body>
+<style> body{
+	background-color:black;
+	color:white;
+	font-size:26px;
+	text-align:center;
+}
+input{color:black;}
+.custom-btn{
+	border-radius:100%;
+	width:100px; height:100px;
+	font-size:50px;
+} </style>
+<script> 
+	function replaceWithForm(propName){
+		var element = document.getElementById(propName);
+		var papa = element.parentNode;
+		console.log('in here, id is: '+ propName)
+		var s = '<input id=\''+propName+'Form\' type=\'text\' name=\''+propName+'\'></input>' +
+		'<button id=\''+propName+'Btn\' class=\'btn btn-success glyphicon glyphicon-floppy-disk\' type=\'submit\'  ></button>'; // getElementById("myNumber"). value*/
+		var div = document.createElement('div');
+		div.innerHTML = s;
+		papa.replaceChild(div,element);
+		
+	
+	}
+
+
+
+
+ </script>
