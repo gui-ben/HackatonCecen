@@ -1,4 +1,4 @@
-# ToDo-List
+# Hackaton Cecen
 A fully functioning To-Do list using Django to manage the back-end
 
 So far we have three views, and only one app. The Homepage view displays all of the tasks,
